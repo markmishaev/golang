@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 )
 
 //GenDisplaceFn rturns a function which computes displacement as a function of time
@@ -13,14 +16,34 @@ func GenDisplaceFn(a, vo, so float64) func(float64) float64 {
 	}
 
 	return fn
-
 }
 
 func main() {
 
-	fn := GenDisplaceFn(10, 2, 1)
+	in := bufio.NewScanner(os.Stdin)
 
-	fmt.Println(fn(3))
+	fmt.Print("Enter acceleration: ")
+	in.Scan()
+	acceleration := in.Text()
+	numAcceleration, _ := strconv.ParseFloat(acceleration, 64)
 
-	fmt.Println(fn(5))
+	fmt.Print("Enter initial velocity: ")
+	in.Scan()
+	velocity := in.Text()
+	numVelocity, _ := strconv.ParseFloat(velocity, 64)
+
+	fmt.Print("Enter initial displacement : ")
+	in.Scan()
+	displacement := in.Text()
+	numDisplacement, _ := strconv.ParseFloat(displacement, 64)
+
+	fmt.Print("Enter time : ")
+	in.Scan()
+	time := in.Text()
+	numTime, _ := strconv.ParseFloat(time, 64)
+
+	fn := GenDisplaceFn(numAcceleration, numVelocity, numDisplacement)
+
+	fmt.Println(fn(numTime))
+
 }
