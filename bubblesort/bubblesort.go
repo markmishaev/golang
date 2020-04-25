@@ -49,7 +49,6 @@ func main() {
 	fmt.Println(numbersSlice)
 }
 
-//BubbleSort method sorts slice of numbers
 func BubbleSort(tosort []int) {
 	size := len(tosort)
 	if size < 2 {
